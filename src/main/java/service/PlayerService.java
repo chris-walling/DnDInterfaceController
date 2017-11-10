@@ -2,7 +2,7 @@ package main.java.service;
 
 import java.util.List;
 
-import main.java.Model.Player;
+import main.java.model.Player;
 
 public interface PlayerService {
 	

@@ -1,4 +1,4 @@
-package main.java.Model;
+package main.java.model;
 
 public class Spell{
 	
