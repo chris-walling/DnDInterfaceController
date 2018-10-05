@@ -3,7 +3,7 @@ package main.java.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import main.java.model.Player;
+import main.java.Model.Player;
 
 public interface PlayerRepository extends MongoRepository<Player, String>{
 	

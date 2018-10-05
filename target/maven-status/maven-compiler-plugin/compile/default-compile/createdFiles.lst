@@ -1,0 +1,10 @@
+main\java\model\Stats.class
+main\java\service\PlayerServiceImpl.class
+main\java\model\Player.class
+main\java\security\WebSecurityConfig.class
+main\java\Application.class
+main\java\service\PlayerService.class
+main\java\controller\PlayerController.class
+main\java\repository\PlayerRepository.class
+main\java\model\Spell.class
+main\java\repository\ApplicationConfig.class

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.model.Player;
+import main.java.Model.Player;
 import main.java.service.PlayerServiceImpl;
 
 @RestController
