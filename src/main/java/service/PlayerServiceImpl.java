@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.java.Model.Player;
+import main.java.exceptions.PlayerNotFoundException;
 import main.java.repository.PlayerRepository;
 
 @Service
@@ -18,11 +19,9 @@ public class PlayerServiceImpl implements PlayerService{
 		return null;
 	}
 	
-	public String getPlayerByName(String name) {
-		String player = repository.findByName(name).toString();
-		if (player.isEmpty()) {
-			return "No player found";
-		}
+	public Player getPlayerByName(String name) {
+		Player player = repository.findByName(name);
+		if (player == null) throw new PlayerNotFoundException();
 		return player;
 	}
 	

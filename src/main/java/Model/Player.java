@@ -30,12 +30,11 @@ public class Player {
 		this.name = name;
 		this.charClass = charClass;
 		this.stats = stats;
-		
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("Player[name=%s, charClass=%s", name, charClass);
+		return String.format("Player[Name=%s, Class=%s]", name, charClass);
 	}
 	
 	public String getId() {

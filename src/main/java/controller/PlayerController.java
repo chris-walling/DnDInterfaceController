@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.java.Model.Player;
+import main.java.entities.DnDResponseEntity;
 import main.java.service.PlayerServiceImpl;
 
 @RestController
@@ -42,10 +44,11 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value = "/createNewPlayerByName", method=RequestMethod.POST)
-	public Player createNewPlayerByName(@RequestBody Player player) {
+	public ResponseEntity<Player> createNewPlayerByName(@RequestBody Player player) {
 		logger.info("Creating Player: {}", player);
 		
-		return playerService.createPlayer(player);
+		return DnDResponseEntity
+				.playerCreated(playerService.createPlayer(player));
 	}
 
 }
