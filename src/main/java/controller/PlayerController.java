@@ -29,13 +29,11 @@ public class PlayerController {
 		return playerService.getPlayerById(id);
 	}
 	
-	@RequestMapping(value = "/findPlayerByName", method=RequestMethod.GET)
-	public String findPlayerByName(@RequestParam(value="name") String name) {
-		String player = playerService.getPlayerByName(name).toString();
-		if (player.isEmpty() || player == null) {
-			return "No player found";
-		}
-		return player;
+	@RequestMapping(value = "/getPlayerByName", method=RequestMethod.GET)
+	public ResponseEntity<Player> findPlayerByName(@RequestParam(value="name") String name) {
+		logger.info("Searching For Player: {}", name);
+		return DnDResponseEntity
+				.playerFound(playerService.getPlayerByName(name));
 	}
 	
 	@RequestMapping(value = "/getAllPlayers", method=RequestMethod.GET)
