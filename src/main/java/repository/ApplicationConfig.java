@@ -22,13 +22,13 @@ public class ApplicationConfig extends AbstractMongoConfiguration {
 	}
 	
 	@Override
-	public @Bean MongoClient mongo() {
+	public @Bean MongoClient mongoClient() {
 		MongoClientURI uri = new MongoClientURI(connectionURI);
 		return new MongoClient(uri);
 	}
 	
 	public @Bean MongoDbFactory mongoDbFactory() {
-		return new SimpleMongoDbFactory(mongo(), "DnDInterface");
+		return new SimpleMongoDbFactory(mongoClient(), "DnDInterface");
 	}
 	
 	@Override
