@@ -30,7 +30,6 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 	
 	public Player createPlayer(Player player) {
-		
 		return repository.save(player);
 	}
 	

@@ -11,14 +11,15 @@ public class Player {
 	@Id
 	public String id;
 	
-	@JsonProperty("spells")
+	@JsonProperty
 	public String[] spells;
-	@JsonProperty("items")
+	@JsonProperty
 	public String[] items;
+	@JsonProperty
 	public String name;
+	@JsonProperty
 	public String charClass;
-	
-	@JsonProperty("stats")
+	@JsonProperty
 	public Stats stats;
 	
 	public Player() {}
