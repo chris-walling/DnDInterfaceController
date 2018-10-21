@@ -19,8 +19,8 @@ public class PlayerServiceImpl implements PlayerService{
 		return null;
 	}
 	
-	public Player getPlayerByName(String name) {
-		Player player = repository.findByName(name);
+	public Player[] getPlayerByName(String name) {
+		Player[] player = repository.findByName(name);
 		if (player == null) throw new PlayerNotFoundException();
 		return player;
 	}

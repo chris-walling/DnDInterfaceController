@@ -9,6 +9,6 @@ public interface PlayerRepository extends MongoRepository<Player, String>{
 	//public Player findById(String id);
 	
 	//@Query(value="{ 'Name' : ?0 }", fields="{ 'Name' : 1 }")
-	public Player findByName(String name);
+	public Player[] findByName(String name);
 	
 }

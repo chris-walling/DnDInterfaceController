@@ -17,7 +17,7 @@ public class DnDResponseEntity<T> extends ResponseEntity<T> {
 		return builder.body(player);
 	}
 	
-	public static ResponseEntity<Player> playerFound(Player player) {
+	public static ResponseEntity<Player[]> playerFound(Player[] player) {
 		BodyBuilder builder = status(HttpStatus.OK);
 		return builder.body(player);
 	}

@@ -8,7 +8,7 @@ public interface PlayerService {
 	
 	public String getPlayerById(String id);
 	
-	public Player getPlayerByName(String name);
+	public Player[] getPlayerByName(String name);
 	
 	public List<Player> getAllPlayers();
 	

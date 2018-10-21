@@ -30,7 +30,7 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value = "/getPlayerByName", method=RequestMethod.GET)
-	public ResponseEntity<Player> findPlayerByName(@RequestParam(value="name") String name) {
+	public ResponseEntity<Player[]> findPlayerByName(@RequestParam(value="name") String name) {
 		logger.info("Searching For Player: {}", name);
 		return DnDResponseEntity
 				.playerFound(playerService.getPlayerByName(name));
