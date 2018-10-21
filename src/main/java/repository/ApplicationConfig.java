@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -23,12 +24,15 @@ public class ApplicationConfig extends AbstractMongoConfiguration {
 	
 	@Override
 	public @Bean MongoClient mongoClient() {
-		MongoClientURI uri = new MongoClientURI(connectionURI);
-		return new MongoClient(uri);
+		return new MongoClient(new MongoClientURI(connectionURI));
 	}
 	
 	public @Bean MongoDbFactory mongoDbFactory() {
 		return new SimpleMongoDbFactory(mongoClient(), "DnDInterface");
+	}
+	
+	public @Bean MongoTemplate mongoTemplate() {
+		return new MongoTemplate(mongoDbFactory());
 	}
 	
 	@Override
