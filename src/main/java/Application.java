@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableAutoConfiguration
 @EntityScan
-@EnableMongoRepositories(basePackages="main.java.repository")
+@EnableMongoRepositories(basePackages="main.java.DAOTemplates")
 public class Application {
 
 	public static void main(String[] args) {

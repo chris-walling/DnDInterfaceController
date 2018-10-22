@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,13 @@ public class PlayerController {
 				.playerFound(playerService.getPlayerByName(name));
 	}
 	
+	@RequestMapping(value = "/getOnePlayerByName", method=RequestMethod.GET)
+	public ResponseEntity<Player> findOnePlayerByName(@RequestParam(value="name") String name) {
+		logger.info("Searching For One Player By Name: {}", name);
+		return DnDResponseEntity
+				.playerFound(playerService.findOneByName(name));
+	}
+	
 	@RequestMapping(value = "/getAllPlayers", method=RequestMethod.GET)
 	public List<Player> getAllPlayers() {
 		return playerService.getAllPlayers();
@@ -47,6 +55,14 @@ public class PlayerController {
 		
 		return DnDResponseEntity
 				.playerCreated(playerService.createPlayer(player));
+	}
+	
+	@RequestMapping(value = "/deletePlayer", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deletePlayer(@RequestParam(value="id") String id) {
+		logger.info("Deleting Player By Id: {}", id);
+		
+		playerService.deletePlayer(id);
+		return DnDResponseEntity.noContent().build();
 	}
 
 }
