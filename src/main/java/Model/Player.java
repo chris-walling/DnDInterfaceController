@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Player {
 	
 	@Id
-	public String id;
+	public String _id;
 	
 	@JsonProperty
 	public String[] spells;
@@ -21,16 +21,19 @@ public class Player {
 	public String charClass;
 	@JsonProperty
 	public Stats stats;
+	@JsonProperty
+	public String uid;
 	
 	public Player() {}
 	
 	public Player(String[] spells, String[] items, String name, String charClass,
-			Stats stats) {
+			Stats stats, String uid) {
 		this.spells = spells;
 		this.items = items;
 		this.name = name;
 		this.charClass = charClass;
 		this.stats = stats;
+		this.uid = uid;
 	}
 	
 	@Override
@@ -39,11 +42,11 @@ public class Player {
 	}
 	
 	public String getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this._id = id;
 	}
 
 	public String[] getSpells() {
@@ -84,6 +87,14 @@ public class Player {
 
 	public void setStats(Stats stats) {
 		this.stats = stats;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	
 	

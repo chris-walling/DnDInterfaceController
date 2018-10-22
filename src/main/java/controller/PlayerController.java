@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +17,7 @@ import main.java.entities.DnDResponseEntity;
 import main.java.service.PlayerServiceImpl;
 
 @RestController
+@RequestMapping("/player")
 public class PlayerController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
@@ -25,16 +25,16 @@ public class PlayerController {
 	@Autowired
 	private PlayerServiceImpl playerService;
 	
-	@RequestMapping(value = "/PlayerSearch", method=RequestMethod.GET)
-	public String getPlayer(@RequestParam(value="id") String id) {
+	@RequestMapping(value = "/findPlayerById", method=RequestMethod.GET)
+	public Player getPlayer(@RequestParam(value="id") String id) {
 		return playerService.getPlayerById(id);
 	}
 	
-	@RequestMapping(value = "/getPlayerByName", method=RequestMethod.GET)
-	public ResponseEntity<Player[]> findPlayerByName(@RequestParam(value="name") String name) {
+	@RequestMapping(value = "/getPlayersByName", method=RequestMethod.GET)
+	public ResponseEntity<List<Player>> findPlayerByName(@RequestParam(value="name") String name) {
 		logger.info("Searching For Player: {}", name);
 		return DnDResponseEntity
-				.playerFound(playerService.getPlayerByName(name));
+				.playerFound(playerService.getPlayersByName(name));
 	}
 	
 	@RequestMapping(value = "/getOnePlayerByName", method=RequestMethod.GET)
@@ -49,7 +49,7 @@ public class PlayerController {
 		return playerService.getAllPlayers();
 	}
 	
-	@RequestMapping(value = "/createNewPlayerByName", method=RequestMethod.POST)
+	@RequestMapping(value = "/createNewPlayer", method=RequestMethod.POST)
 	public ResponseEntity<Player> createNewPlayerByName(@RequestBody Player player) {
 		logger.info("Creating Player: {}", player);
 		
@@ -63,6 +63,12 @@ public class PlayerController {
 		
 		playerService.deletePlayer(id);
 		return DnDResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/updatePlayer", method=RequestMethod.POST)
+	public ResponseEntity<Player> updatePlayer(@RequestBody Player player) {
+		return DnDResponseEntity
+				.playerUpdated(playerService.updatePlayer(player));
 	}
 
 }

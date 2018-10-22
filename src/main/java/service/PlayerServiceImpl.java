@@ -8,29 +8,30 @@ import org.springframework.stereotype.Service;
 import main.java.DAOTemplates.PlayerTemplateDAOImpl;
 import main.java.Model.Player;
 import main.java.exceptions.PlayerNotFoundException;
-import main.java.repository.PlayerRepository;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
 	
 	@Autowired
-	private PlayerRepository repository;
-	
-	@Autowired
 	private PlayerTemplateDAOImpl playerTemplateDAO;
 	
-	public String getPlayerById(String id) {
-		return null;
-	}
-	
-	public Player[] getPlayerByName(String name) {
-		Player[] player = repository.findByName(name);
+	public Player getPlayerById(String id) {
+		Player player = playerTemplateDAO.findOneById(id);
 		if (player == null) throw new PlayerNotFoundException();
 		return player;
 	}
 	
+	
+	public List<Player> getPlayersByName(String name) {
+		List<Player> players = playerTemplateDAO.findByName(name);
+		if (players == null) throw new PlayerNotFoundException();
+		return players;
+	}
+	
 	public Player findOneByName(String name) {
-		return playerTemplateDAO.findOneByName(name);
+		Player player = playerTemplateDAO.findOneByName(name);
+		if (player == null) throw new PlayerNotFoundException();
+		return player;
 	}
 	
 	public List<Player> getAllPlayers() {
@@ -45,6 +46,10 @@ public class PlayerServiceImpl implements PlayerService{
 	
 	public void deletePlayer(String id) {
 		playerTemplateDAO.deletePerson(id);
+	}
+	
+	public Player updatePlayer(Player player) {
+		return playerTemplateDAO.updateOnePlayer(player);
 	}
 	
 
