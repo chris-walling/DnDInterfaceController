@@ -1,5 +1,7 @@
 package main.java.Model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,9 +14,9 @@ public class Player {
 	public String _id;
 	
 	@JsonProperty
-	public String[] spells;
+	public List<String> spells;
 	@JsonProperty
-	public String[] items;
+	public List<String> items;
 	@JsonProperty
 	public String name;
 	@JsonProperty
@@ -26,7 +28,7 @@ public class Player {
 	
 	public Player() {}
 	
-	public Player(String[] spells, String[] items, String name, String charClass,
+	public Player(List<String> spells, List<String> items, String name, String charClass,
 			Stats stats, String uid) {
 		this.spells = spells;
 		this.items = items;
@@ -49,19 +51,27 @@ public class Player {
 		this._id = id;
 	}
 
-	public String[] getSpells() {
+	public List<String> getSpells() {
 		return spells;
 	}
 
-	public void setSpells(String[] spells) {
+	public void setSpells(List<String> spells) {
 		this.spells = spells;
 	}
+	
+	public void addSpell(String spell) {
+		this.spells.add(spell);
+	}
+	
+	public void removeSpell(String spell) {
+		this.spells.remove(spell);
+	}
 
-	public String[] getItems() {
+	public List<String> getItems() {
 		return items;
 	}
 
-	public void setItems(String[] items) {
+	public void setItems(List<String> items) {
 		this.items = items;
 	}
 

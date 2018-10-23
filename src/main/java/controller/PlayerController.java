@@ -65,7 +65,7 @@ public class PlayerController {
 		return DnDResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/updatePlayer", method=RequestMethod.POST)
+	@RequestMapping(value = "/updatePlayer", method=RequestMethod.PUT)
 	public ResponseEntity<Player> updatePlayer(@RequestBody Player player) {
 		return DnDResponseEntity
 				.playerUpdated(playerService.updatePlayer(player));

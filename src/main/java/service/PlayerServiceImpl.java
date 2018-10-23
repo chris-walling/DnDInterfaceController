@@ -35,12 +35,10 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 	
 	public List<Player> getAllPlayers() {
-		//return repository.findAll();
 		return playerTemplateDAO.getAllPlayers();
 	}
 	
 	public Player createPlayer(Player player) {
-		//return repository.save(player);
 		return playerTemplateDAO.savePlayer(player);
 	}
 	
@@ -49,6 +47,8 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 	
 	public Player updatePlayer(Player player) {
+		Player playerProfile = playerTemplateDAO.findOneById(player.getId());
+		if (playerProfile == null) throw new PlayerNotFoundException();
 		return playerTemplateDAO.updateOnePlayer(player);
 	}
 	

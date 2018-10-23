@@ -1,46 +1,67 @@
 package main.java.Model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Document(collection = "Spells")
 public class Spell{
-	
-//	private String spellName;
-//	private String description;
-//	private String higherLevel;
-//	private String range;
-//	private String ritual;
-//	private String concentration;
-//	private String castingTime;
-//	private int level;
-//	private String school; //superclass of School, with subclasses?
-//	private String[] classes; //make class objects, can be array of Classes
+
+
+	@Id
 	private String  _id;
-	private String index;
+	@JsonProperty
 	private String name;
+	@JsonProperty
 	private String[] desc;
+	@JsonProperty
 	private String[] higherLevel;
+	@JsonProperty
 	private String page;
+	@JsonProperty
 	private String range;
+	@JsonProperty
 	private String[] components;
+	@JsonProperty
 	private String material;
+	@JsonProperty
 	private String ritual;
+	@JsonProperty
 	private String duration;
+	@JsonProperty
 	private String concentration;
+	@JsonProperty
 	private String casting_time;
+	@JsonProperty
 	private String level;
 	//private School school;
-	//private Class[] classes;
-	//private SubClass[] subclasses;
-	private String url;
+	
+	public Spell () {}
+	
+	public Spell(String _id, String name, String[] desc, String[] higherLevel, String page, String range,
+			String[] components, String material, String ritual, String duration, String concentration,
+			String casting_time, String level) {
+		this._id = _id;
+		this.name = name;
+		this.desc = desc;
+		this.higherLevel = higherLevel;
+		this.page = page;
+		this.range = range;
+		this.components = components;
+		this.material = material;
+		this.ritual = ritual;
+		this.duration = duration;
+		this.concentration = concentration;
+		this.casting_time = casting_time;
+		this.level = level;
+	}
+	
 	public String get_id() {
 		return _id;
 	}
 	public void set_id(String _id) {
 		this._id = _id;
-	}
-	public String getIndex() {
-		return index;
-	}
-	public void setIndex(String index) {
-		this.index = index;
 	}
 	public String getName() {
 		return name;
@@ -114,12 +135,4 @@ public class Spell{
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
-
 }
